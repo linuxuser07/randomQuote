@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Random Quote Generator</title>
+</head>
+<body>
+<h1>Random Quotes</h1>
+<ul id="quotes"></ul>
+<ul id="Author"></ul>
+<button id="quoteButton"> Get Quote</button>
+</body>
+</html>
+
+<script>
+    const ul= document.getElementById('quotes');
+    const ula = document.getElementById('Author');
+    const qb = document.getElementById('quoteButton');
+    const url = 'https://random-quote-generator.herokuapp.com/api/quotes/random';
+
+    qb.addEventListener('click', function () {
+        fetch(url)
+            .then((res)=>res.json())
+            .then(function (data) {
+                console.log(data);
+                ul.innerHTML= `${data.quote}`;
+                ula.innerHTML = `${data.author}`;
+            })
+    });
+
+</script>
